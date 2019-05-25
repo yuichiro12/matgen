@@ -10,13 +10,13 @@ import (
 
 func TestNew(t *testing.T) {
 	for i := 0; i < 100; i++ {
-		rows := rand.Intn(30) + 1
-		cols := rand.Intn(30) + 1
+		rows := rand.Intn(100) + 1
+		cols := rand.Intn(100) + 1
 		r := rand.Intn(min(rows, cols)) + 1
-		epsilon := 1e-7
+		epsilon := 1e-16
 		mr, fa := calculateRank(r, rows, cols, epsilon)
 		if mr != r {
-			fmt.Printf("%v\n", fa)
+			fmt.Printf("singular value vector: %v\n", fa)
 			t.Errorf("rows %v, cols %v, got %v, want %v", rows, cols, mr, r)
 		}
 	}

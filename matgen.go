@@ -79,12 +79,13 @@ func New(opts ...Option) mat.Matrix {
 		}
 	}
 	if g.Rows > g.Columns {
-		return mat.NewDense(g.Rows, g.Columns, v).T()
+		return mat.NewDense(g.Columns, g.Rows, v).T()
 	}
 	return mat.NewDense(g.Rows, g.Columns, v)
 }
 
-func MatrixRankWithDumpSV(a mat.Matrix, epsilon float64) int {
+// exactly same implementation of mat.Rank()
+func MatrixRank(a mat.Matrix, epsilon float64) int {
 	if epsilon < 0 {
 		panic("bye")
 	}
